@@ -1,5 +1,51 @@
 <div class="container">
     <div class="page-header">
-        <h2 id="header-content">Trello Card Form</h2>
+    <h2 id="header-content">Create a Trello Card!</h2>
     </div>
+
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="dropdown" id="board-dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="board" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    {{card.board}}
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="board" id="board-list">
+                    <li ng-click="setBoard('Plugin Development')">Plugin Development</li>
+                    <li ng-click="setBoard('QA / Implementation')">QA / Implementation</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="dropdown" id="column-dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="column" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    {{card.column}}
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="column">
+                    <li ng-if="isDevelopment()" ng-click="setColumn('Custom')">Custom</li>
+                    <li ng-if="isDevelopment()" ng-click="setColumn('Bugs')">Bugs</li>
+                    <li ng-if="isDevelopment()" ng-click="setColumn('Enhancements')">Enhancements</li>
+                    <li ng-if="isQA()" ng-click="setColumn('Validate')">Validate</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 class="header">Labels</h4>
+        <div class="col-xs-4">
+            <select class="selectpicker" data-width="fit" title="Select Labels" multiple>
+                <option>Custom</option>
+                <option>Update</option>
+                <option>Bug</option>
+                <option>Enhancement</option>
+                <option>Troubleshoot</option>
+                <option>Research</option>
+            </select>
+        </div>
+    </div>
+
 </div>
