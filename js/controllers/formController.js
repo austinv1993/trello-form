@@ -8,7 +8,9 @@ angular.module('form')
             labels: [],
             description: "",
             title: "",
-            dueDate: ""
+            dueDate: "",
+            logs: "",
+            file: ""
         };
 
         $scope.titleBuilder = {
@@ -26,6 +28,8 @@ angular.module('form')
             stepsToReproduce: "",
             numbers: ""
         };
+
+        $('.selectpicker').selectpicker('deselectAll');
     }
 
     init();
@@ -67,14 +71,21 @@ angular.module('form')
         return $('#standard').is(':checked');
     };
 
+    $scope.isCustom = function() {
+        return $('#custom').is(':checked');
+    };
+
+    $scope.pasteLogs = false;
+    $scope.uploadFile = false;
+
     //JQUERY
 
-    $('.radio').change(function() {
+    $('.main').change(function() {
         init();
         $scope.$digest();
     });
 
-    //STANDARD
+    //STANDARD PANEL
 
     $('#standard-subject').change(function () {
         $scope.card.labels = [];
@@ -94,12 +105,26 @@ angular.module('form')
         console.log($scope.descriptionBuilder.tasks)
     });
 
-    $('#dbUploaded').change(function () {
+    //CUSTOM PANEL
+
+    $('#custom-subject').change(function () {
+        $scope.card.labels = [];
+        $scope.card.labels = $(this).val();
+        console.log($scope.card.labels);
+        $scope.$digest();
+    });
+
+    $('#custom-channels').change(function () {
+        $scope.titleBuilder.channels = $(this).val();
+        console.log($scope.titleBuilder.channels);
+    });
+
+    $('#customDbUploaded').change(function () {
         $scope.descriptionBuilder.databaseUploaded = $(this).is(':checked');
         console.log($scope.descriptionBuilder.databaseUploaded);
     });
 
-    $('#credsAdded').change(function () {
+    $('#customCredsAdded').change(function () {
         $scope.descriptionBuilder.credentialsAdded = $(this).is(':checked');
         console.log($scope.descriptionBuilder.credentialsAdded);
     });
@@ -114,4 +139,17 @@ angular.module('form')
         console.log($scope.card.dueDate);
     });
 
+    $('#pasteLogs').change(function() {
+       $scope.pasteLogs = $(this).is(':checked');
+       $scope.uploadFile = !$(this).is(':checked');
+       $scope.$digest();
+    });
+
+    $('#uploadFile').change(function() {
+        $scope.uploadFile = $(this).is(':checked');
+        $scope.pasteLogs = !$(this).is(':checked');
+        $scope.$digest();
+    });
+
+    //
 });
