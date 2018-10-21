@@ -12,7 +12,8 @@ angular.module('form')
 
     $scope.titleBuilder = {
         fbVersion: "",
-        title: ""
+        title: "",
+        channels: []
     };
 
     $scope.descriptionBuilder = {
@@ -50,14 +51,45 @@ angular.module('form')
         return $scope.card.board === "QA / Implementation";
     };
 
+    $scope.isEnhancement = function() {
+       return $scope.card.labels.includes("Enhancement");
+    };
+    $scope.isBug = function() {
+        return $scope.card.labels.includes("Bug");
+    };
+    $scope.isValidate = function() {
+        return $scope.card.labels.includes("Validate");
+    };
+    $scope.isResearch = function() {
+        return $scope.card.labels.includes("Research");
+    };
+
+    $scope.isStandard = function() {
+        return $('#standard').is(':checked');
+    };
+
     //JQUERY
 
-    $('#labels').change(function () {
-        $scope.card.labels = $(this).val();
-        console.log($scope.card.labels)
+    $('.radio').change(function() {
+        $scope.$digest();
     });
 
-    $('#tasks').change(function () {
+    //STANDARD
+
+    $('#standard-subject').change(function () {
+        $scope.card.labels = [];
+        var subject = $(this).val();
+        $scope.card.labels.push(subject);
+        console.log($scope.card.labels);
+        $scope.$digest();
+    });
+
+    $('#standard-channels').change(function () {
+        $scope.titleBuilder.channels = $(this).val();
+        console.log($scope.titleBuilder.channels);
+    });
+
+    $('#standard-tasks').change(function () {
         $scope.descriptionBuilder.tasks = $(this).val();
         console.log($scope.descriptionBuilder.tasks)
     });
