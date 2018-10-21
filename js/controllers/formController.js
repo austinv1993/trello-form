@@ -1,32 +1,31 @@
 angular.module('form')
 .controller('formController', function($scope) {
 
-    $scope.card = {
-        board: "Board",
-        column: "Column",
-        labels: [],
-        description: "",
-        title: "",
-        dueDate: ""
-    };
-
-    $scope.titleBuilder = {
-        fbVersion: "",
-        title: "",
-        channels: []
-    };
-
-    $scope.descriptionBuilder = {
-        tasks: [],
-        company: "",
-        databaseUploaded: false,
-        credentialsAdded: false,
-        description: "",
-        stepsToReproduce: ""
-    };
-
     function init() {
+        $scope.card = {
+            board: "Board",
+            column: "Column",
+            labels: [],
+            description: "",
+            title: "",
+            dueDate: ""
+        };
 
+        $scope.titleBuilder = {
+            fbVersion: "",
+            title: "",
+            channels: []
+        };
+
+        $scope.descriptionBuilder = {
+            tasks: [],
+            company: "",
+            databaseUploaded: false,
+            credentialsAdded: false,
+            description: "",
+            stepsToReproduce: "",
+            numbers: ""
+        };
     }
 
     init();
@@ -71,6 +70,7 @@ angular.module('form')
     //JQUERY
 
     $('.radio').change(function() {
+        init();
         $scope.$digest();
     });
 
