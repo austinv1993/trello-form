@@ -37,7 +37,7 @@
     <div class="row">
         <h4 class="header">Labels</h4>
         <div class="col-xs-4">
-            <select class="selectpicker" data-width="fit" title="Select Labels" multiple>
+            <select id="labels" class="selectpicker" data-width="fit" title="Labels" multiple>
                 <option>Custom</option>
                 <option>Update</option>
                 <option>Bug</option>
@@ -48,4 +48,100 @@
         </div>
     </div>
 
+    <div class="row">
+        <h4 class="header">Plugins</h4>
+        <div class="col-xs-4">
+            <select id="plugins" class="selectpicker" data-width="fit" title="Plugins" multiple>
+                <option>Master</option>
+                <option>3DCart</option>
+                <option>Amazon</option>
+                <option>BigCommerce</option>
+                <option>Ebay</option>
+                <option>LemonStand</option>
+                <option>Magento Cart</option>
+                <option>Magento Two</option>
+                <option>Salesforce</option>
+                <option>ShipExpress</option>
+                <option>Shipstation</option>
+                <option>Shopify</option>
+                <option>SolidWorks</option>
+                <option>Volusion</option>
+                <option>WooCommerce</option>
+                <option>X-Cart</option>
+                <option>Xero</option>
+                <option>ZenCart</option>
+                <option>Zoho</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 class="header">Tasks</h4>
+        <div class="col-xs-4">
+            <select id="tasks" class="selectpicker" data-width="fit" title="Tasks" multiple>
+                <option>Product Import</option>
+                <option>Product Export</option>
+                <option>Inventory Update</option>
+                <option>Order Import</option>
+                <option>Order Export</option>
+                <option>Order Fulfillment</option>
+                <option>Shipment Import</option>
+                <option>Carrier Sync</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 class="header">Title</h4>
+        <div class="col-xs-4">
+            <input type="text" class="form-control" ng-model="titleBuilder.title" placeholder="Title of the card">
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 class="header">Description</h4>
+        <div class="col-xs-4">
+            <textarea class="form-control rounded-0" ng-model="descriptionBuilder.description" placeholder="Description" rows="3"></textarea>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 class="header">Company</h4>
+        <div class="col-xs-4">
+            <input type="text" class="form-control" ng-model="descriptionBuilder.company" placeholder="Company name in Sugar">
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 class="header">Fishbowl Version</h4>
+        <div class="col-xs-4">
+            <input type="text" class="form-control" ng-model="titleBuilder.fbVersion" placeholder="18.10">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="checkbox">
+                <label><input id="dbUploaded" type="checkbox">Database Uploaded</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="checkbox">
+                <label><input id="credsAdded" type="checkbox">Credentials Added to Spreadsheet</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 class="header">Due Date</h4>
+        <div class="col-xs-4">
+            <div class="input-group date">
+                <input id="datepicker" type="text" class="form-control" placeholder="Due Date">
+                <div class="input-group-addon"></div>
+            </div>
+        </div>
+    </div>
 </div>
