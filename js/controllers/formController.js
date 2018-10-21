@@ -20,7 +20,8 @@ angular.module('form')
         company: "",
         databaseUploaded: false,
         credentialsAdded: false,
-        description: ""
+        description: "",
+        stepsToReproduce: ""
     };
 
     function init() {
@@ -39,7 +40,6 @@ angular.module('form')
     $scope.setColumn = function(column) {
         $scope.card.column = column;
     };
-
 
 
     $scope.isDevelopment = function() {
@@ -81,6 +81,5 @@ angular.module('form')
         $scope.card.dueDate = e.format().toString();
         console.log($scope.card.dueDate);
     });
-
 
 });
