@@ -61,7 +61,7 @@
                             </div>
                         </div>
 
-                        <div id="standard-tasks-div"  class="row" ng-show="isBug() || isEnhancement() || isValidate()">
+                        <div id="standard-tasks-div"  class="row">
                             <h4 class="header">Tasks</h4>
                             <div class="col-xs-4">
                                 <select id="standard-tasks" class="selectpicker" data-width="fit" title="Tasks" multiple>
@@ -77,7 +77,7 @@
                             </div>
                         </div>
 
-                        <div id="standard-description" ng-show="isEnhancement() || isResearch()" class="row">
+                        <div id="standard-description" ng-show="isEnhancement()" class="row">
                             <h4 class="header">Description</h4>
                             <div class="col-xs-12">
                                 <textarea class="form-control rounded-0" ng-model="descriptionBuilder.description" placeholder="Description" rows="3"></textarea>
@@ -157,7 +157,7 @@
                             <h4 class="header">Company</h4>
                             <div class="col-xs-12">
                                 <input type="text" class="form-control" ng-model="descriptionBuilder.company"
-                                       placeholder="Company name in Sugar">
+                                       placeholder="Company">
                             </div>
                         </div>
 
@@ -186,6 +186,13 @@
                             </div>
                         </div>
 
+                        <div class="row" ng-show="isEnhancement() || isNewCustom()">
+                            <h4 class="header">Feature List</h4>
+                            <div class="col-xs-12">
+                                <textarea class="form-control rounded-0" ng-model="descriptionBuilder.newFeatures" placeholder="Feature list" rows="6"></textarea>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <h4 class="header">Due Date</h4>
                             <div class="col-xs-4">
@@ -211,8 +218,16 @@
                 <div class="panel-body">
                     <div class="container-fluid">
 
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="checkbox">
+                                    <label><input id="needsToBeValidated" type="checkbox">Needs To Be Validated</label>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row" ng-show="!isCustom()">
-                            <h4 class="header no-top-margin">Company</h4>
+                            <h4 class="header">Company</h4>
                             <div class="col-xs-8">
                                 <input type="text" class="form-control" ng-model="descriptionBuilder.company" placeholder="Company">
                             </div>
@@ -235,7 +250,7 @@
                         </div>
 
                         <div class="row">
-                            <h4 class="header no-top-margin">Numbers</h4>
+                            <h4 class="header">Numbers</h4>
                             <div class="col-xs-12">
                                 <input type="text" class="form-control" ng-model="descriptionBuilder.numbers" placeholder="Numbers">
                                 <small class="form-text text-muted">Product numbers, order numbers etc., specify Fishbowl or channel.</small>
@@ -254,12 +269,12 @@
                             <div class="col-xs-12">
                                 <div class="radio">
                                     <label><input id="pasteLogs" type="radio" name="logs">Paste logs</label>
-                                    <textarea class="form-control rounded-0" ng-model="card.logs" rows="4" ng-show="pasteLogs" placeholder="Logs"></textarea>
+                                    <textarea class="form-control rounded-0" ng-model="logText" rows="4" ng-show="pasteLogs" placeholder="Logs"></textarea>
                                 </div>
                                 <div class="radio">
                                     <label><input id="uploadFile" type="radio" name="logs">Upload File</label>
                                     <div class="custom-file" ng-show="uploadFile">
-                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <input type="file" class="custom-file-input" id="fileUpload">
                                     </div>
                                 </div>
                             </div>
