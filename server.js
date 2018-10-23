@@ -1,5 +1,5 @@
 var express = require('express')
-,	port = 3000
+,	port = 80
 ,	app = express();
 
 app.use(express.static(__dirname));
