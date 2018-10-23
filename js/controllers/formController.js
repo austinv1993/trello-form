@@ -1,13 +1,13 @@
 angular.module('form')
-.controller('formController', function($scope) {
+.controller('formController', function($scope, trelloService) {
 
     function init() {
         $scope.card = {
-            column: "",
-            labels: [],
-            title: "",
-            description: "",
-            dueDate: ""
+            idLabels: [],
+            name: "",
+            desc: "",
+            due: "",
+            idList: ""
         };
 
         $scope.logText = "";
@@ -16,15 +16,15 @@ angular.module('form')
         $scope.titleBuilder = {
             channels: [],
             tasks: [],
-            fbVersion: ""
+            fbVersion: "",
+            company: ""
         };
 
         $scope.descriptionBuilder = {
-            company: "",
             databaseUploaded: false,
             credentialsAdded: false,
             newFeatures: "",
-            description: "",
+            desc: "",
             numbers: "",
             stepsToReproduce: ""
         };
@@ -86,8 +86,8 @@ angular.module('form')
     });
 
     $('#standard-tasks').change(function () {
-        $scope.descriptionBuilder.tasks = $(this).val();
-        console.log($scope.descriptionBuilder.tasks)
+        $scope.titleBuilder.tasks = $(this).val();
+        console.log($scope.titleBuilder.tasks)
     });
 
     //CUSTOM PANEL
@@ -101,6 +101,11 @@ angular.module('form')
     $('#custom-channels').change(function () {
         $scope.titleBuilder.channels = $(this).val();
         console.log($scope.titleBuilder.channels);
+    });
+
+    $('#custom-tasks').change(function () {
+        $scope.titleBuilder.tasks = $(this).val();
+        console.log($scope.titleBuilder.tasks)
     });
 
     $('#customDbUploaded').change(function () {
@@ -119,8 +124,8 @@ angular.module('form')
         autoclose: true,
         clearBtn: true
     }).on('changeDate', function (e) {
-        $scope.card.dueDate = e.format().toString();
-        console.log($scope.card.dueDate);
+        $scope.card.due = e.format().toString();
+        console.log($scope.card.due);
     });
 
     $('#pasteLogs').change(function() {
@@ -161,11 +166,19 @@ angular.module('form')
         buildTitle();
         buildDescription();
         buildLabels();
+        trelloService.create($scope.card).then(function (response) {
+            console.log(response);
+        });
     };
 
     function buildTitle() {
         var builder = $scope.titleBuilder;
         var title = "";
+
+        if (!isEmpty(builder.company)) {
+            title += wrap(builder.company);
+            title += " ";
+        }
 
         for (var i = 0; i < builder.channels.length; i++) {
             title += wrap(builder.channels[i]);
@@ -175,28 +188,25 @@ angular.module('form')
             title += wrap(builder.tasks[i]);
             title += " ";
         }
-        if (builder.fbVersion !== "") {
-            title += wrap(builder.fbVersion)
+        if (!isEmpty(builder.fbVersion)) {
+            title += wrap(builder.fbVersion);
         }
 
-        return title;
+        $scope.card.name = title;
     }
 
     function buildDescription() {
         var builder = $scope.descriptionBuilder;
         var description = "";
 
-        if (!isEmpty(builder.company)) {
-            description += format(builder.company);
-        }
         if (builder.databaseUploaded) {
             description += format("Database uploaded");
         }
         if (builder.credentialsAdded) {
             description += format("Credentials added to spreadsheet");
         }
-        if (!isEmpty(builder.description)) {
-            description += format(builder.description);
+        if (!isEmpty(builder.desc)) {
+            description += format(builder.desc);
         }
         if (!isEmpty(builder.newFeatures)) {
             description += format(builder.newFeatures);
@@ -208,40 +218,45 @@ angular.module('form')
             description += format(builder.numbers);
         }
 
-        $scope.card.description = description;
+        $scope.card.desc = description;
     }
 
     function buildLabels() {
         var builder = $scope.labelBuilder;
-        var labels = [];
-        var column = "";
+        var labelNames = [];
+        var labelIds = [];
+        var listName = "";
 
         if (builder.custom) {
-            labels.push("Custom");
+            labelNames.push("Custom Plugin");
         }
         if (builder.labels.includes("Update")) {
-            labels.push("Update");
+            labelNames.push("Update");
         }
         if (builder.labels.includes("Bug")) {
-            labels.push("Bug");
+            labelNames.push("Bug");
         }
         if (builder.labels.includes("Enhancement")) {
-            labels.push("Enhancement");
+            labelNames.push("Enhancement");
         }
 
-        $scope.card.labels = labels;
+        for (var i = 0; i < labelNames.length; i++) {
+            labelIds.push(trelloService.getLabelId(labelNames[i], builder.needsToBeValidated));
+        }
+
+        $scope.card.idLabels = labelIds;
 
         if (builder.needsToBeValidated) {
-            column = "Validate";
-        } else if (labels.includes("Bug")) {
-            column = "Bugs";
-        } else if (labels.includes("Custom")) {
-            column = "Custom";
-        } else if (labels.includes("Enhancement")) {
-            column = "Enhancements";
+            listName = "Validate";
+        } else if (labelNames.includes("Bug")) {
+            listName = "Bugs";
+        } else if (labelNames.includes("Custom Plugin")) {
+            listName = "Custom";
+        } else if (labelNames.includes("Enhancement")) {
+            listName = "Enhancements";
         }
 
-        $scope.card.column = column;
+        $scope.card.idList = trelloService.getListId(listName);
     }
 
     function wrap(str) {
