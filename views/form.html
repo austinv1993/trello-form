@@ -15,266 +15,306 @@
         </div>
     </div>
 
-    <!--STANDARD PANEL-->
-    <div class="row" ng-show="isStandard()">
-        <div class="col-xs-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Standard Plugin</h3>
+    <div class="row">
+        <div class="container-fluid">
+            <div class="row">
+                <!--STANDARD PANEL-->
+                <div ng-show="isStandard()">
+                    <div class="col-xs-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Standard Plugin</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <h4 class="header no-top-margin">Subject</h4>
+                                        <div class="col-xs-4">
+                                            <select id="standard-subject" class="selectpicker" data-width="fit"
+                                                    title="Subject">
+                                                <option value="Bug">Bug</option>
+                                                <option value="Enhancement">Enhancement</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <h4 class="header">Channels</h4>
+                                        <div class="col-xs-4">
+                                            <select id="standard-channels" class="selectpicker" data-width="fit"
+                                                    title="Channels" multiple>
+                                                <option>Master</option>
+                                                <option>3DCart</option>
+                                                <option>Amazon</option>
+                                                <option>BigCommerce</option>
+                                                <option>Ebay</option>
+                                                <option>LemonStand</option>
+                                                <option>Magento Cart</option>
+                                                <option>Magento Two</option>
+                                                <option>Salesforce</option>
+                                                <option>ShipExpress</option>
+                                                <option>Shipstation</option>
+                                                <option>Shopify</option>
+                                                <option>SolidWorks</option>
+                                                <option>Volusion</option>
+                                                <option>WooCommerce</option>
+                                                <option>X-Cart</option>
+                                                <option>Xero</option>
+                                                <option>ZenCart</option>
+                                                <option>Zoho</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div id="standard-tasks-div" class="row">
+                                        <h4 class="header">Tasks</h4>
+                                        <div class="col-xs-4">
+                                            <select id="standard-tasks" class="selectpicker" data-width="fit"
+                                                    title="Tasks"
+                                                    multiple>
+                                                <option>Product Import</option>
+                                                <option>Product Export</option>
+                                                <option>Inventory Update</option>
+                                                <option>Order Import</option>
+                                                <option>Order Export</option>
+                                                <option>Order Fulfillment</option>
+                                                <option>Shipment Import</option>
+                                                <option>Carrier Sync</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div id="standard-description" ng-show="isEnhancement()" class="row">
+                                        <h4 class="header">Description</h4>
+                                        <div class="col-xs-12">
+                                    <textarea class="form-control rounded-0" ng-model="descriptionBuilder.description"
+                                              placeholder="Description" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="isCustom() || isStandard()">
+                                <div class="col-xs-2 submit">
+                                    <button type="button" class="btn btn-success" ng-click="submit()">Submit</button>
+                                </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <h4 class="header no-top-margin">Subject</h4>
-                            <div class="col-xs-4">
-                                <select id="standard-subject" class="selectpicker" data-width="fit" title="Subject">
-                                    <option value="Bug">Bug</option>
-                                    <option value="Enhancement">Enhancement</option>
-                                </select>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <h4 class="header">Channels</h4>
-                            <div class="col-xs-4">
-                                <select id="standard-channels" class="selectpicker" data-width="fit" title="Channels" multiple>
-                                    <option>Master</option>
-                                    <option>3DCart</option>
-                                    <option>Amazon</option>
-                                    <option>BigCommerce</option>
-                                    <option>Ebay</option>
-                                    <option>LemonStand</option>
-                                    <option>Magento Cart</option>
-                                    <option>Magento Two</option>
-                                    <option>Salesforce</option>
-                                    <option>ShipExpress</option>
-                                    <option>Shipstation</option>
-                                    <option>Shopify</option>
-                                    <option>SolidWorks</option>
-                                    <option>Volusion</option>
-                                    <option>WooCommerce</option>
-                                    <option>X-Cart</option>
-                                    <option>Xero</option>
-                                    <option>ZenCart</option>
-                                    <option>Zoho</option>
-                                </select>
+                <!--CUSTOM PANEL-->
+                <div ng-show="isCustom()">
+                    <div class="col-xs-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Custom Plugin</h3>
                             </div>
-                        </div>
+                            <div class="panel-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <h4 class="header no-top-margin">Subject</h4>
+                                        <div class="col-xs-4">
+                                            <select id="custom-subject" class="selectpicker" data-width="fit"
+                                                    title="Subject"
+                                                    multiple>
+                                                <option>New Custom</option>
+                                                <option>Update</option>
+                                                <option>Bug</option>
+                                                <option>Enhancement</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-                        <div id="standard-tasks-div"  class="row">
-                            <h4 class="header">Tasks</h4>
-                            <div class="col-xs-4">
-                                <select id="standard-tasks" class="selectpicker" data-width="fit" title="Tasks" multiple>
-                                    <option>Product Import</option>
-                                    <option>Product Export</option>
-                                    <option>Inventory Update</option>
-                                    <option>Order Import</option>
-                                    <option>Order Export</option>
-                                    <option>Order Fulfillment</option>
-                                    <option>Shipment Import</option>
-                                    <option>Carrier Sync</option>
-                                </select>
-                            </div>
-                        </div>
+                                    <div class="row">
+                                        <h4 class="header">Channels</h4>
+                                        <div class="col-xs-4">
+                                            <select id="custom-channels" class="selectpicker" data-width="fit"
+                                                    title="Channels"
+                                                    multiple>
+                                                <option>Master</option>
+                                                <option>3DCart</option>
+                                                <option>Amazon</option>
+                                                <option>BigCommerce</option>
+                                                <option>Ebay</option>
+                                                <option>LemonStand</option>
+                                                <option>Magento Cart</option>
+                                                <option>Magento Two</option>
+                                                <option>Salesforce</option>
+                                                <option>ShipExpress</option>
+                                                <option>Shipstation</option>
+                                                <option>Shopify</option>
+                                                <option>SolidWorks</option>
+                                                <option>Volusion</option>
+                                                <option>WooCommerce</option>
+                                                <option>X-Cart</option>
+                                                <option>Xero</option>
+                                                <option>ZenCart</option>
+                                                <option>Zoho</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-                        <div id="standard-description" ng-show="isEnhancement()" class="row">
-                            <h4 class="header">Description</h4>
-                            <div class="col-xs-12">
-                                <textarea class="form-control rounded-0" ng-model="descriptionBuilder.description" placeholder="Description" rows="3"></textarea>
+                                    <div id="custom-tasks-div" class="row"
+                                         ng-show="isBug() || isEnhancement() || isValidate()">
+                                        <h4 class="header">Tasks</h4>
+                                        <div class="col-xs-4">
+                                            <select id="custom-tasks" class="selectpicker" data-width="fit"
+                                                    title="Tasks"
+                                                    multiple>
+                                                <option>Product Import</option>
+                                                <option>Product Export</option>
+                                                <option>Inventory Update</option>
+                                                <option>Order Import</option>
+                                                <option>Order Export</option>
+                                                <option>Order Fulfillment</option>
+                                                <option>Shipment Import</option>
+                                                <option>Carrier Sync</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <h4 class="header">Company</h4>
+                                        <div class="col-xs-12">
+                                            <input type="text" class="form-control"
+                                                   ng-model="descriptionBuilder.company"
+                                                   placeholder="Company">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <h4 class="header">Fishbowl Version</h4>
+                                        <div class="col-xs-6">
+                                            <input type="text" class="form-control" ng-model="titleBuilder.fbVersion"
+                                                   placeholder="18.10">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="checkbox">
+                                                <label><input id="customDbUploaded" type="checkbox">Database
+                                                    Uploaded</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="checkbox">
+                                                <label><input id="customCredsAdded" type="checkbox">Credentials Added to
+                                                    Spreadsheet</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" ng-show="isEnhancement() || isNewCustom()">
+                                        <h4 class="header">Feature List</h4>
+                                        <div class="col-xs-12">
+                                    <textarea class="form-control rounded-0" ng-model="descriptionBuilder.newFeatures"
+                                              placeholder="Feature list" rows="6"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <h4 class="header">Due Date</h4>
+                                        <div class="col-xs-4">
+                                            <div class="input-group date">
+                                                <input id="datepicker" type="text" class="form-control"
+                                                       placeholder="Due Date">
+                                                <div class="input-group-addon"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <!--CUSTOM PANEL-->
-    <div class="row" ng-show="isCustom()">
-        <div class="col-xs-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Custom Plugin</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <h4 class="header no-top-margin">Subject</h4>
-                            <div class="col-xs-4">
-                                <select id="custom-subject" class="selectpicker" data-width="fit" title="Subject" multiple>
-                                    <option>New Custom</option>
-                                    <option>Update</option>
-                                    <option>Bug</option>
-                                    <option>Enhancement</option>
-                                </select>
+                <!--BUG PANEL-->
+                <div ng-show="isBug() || isValidate()">
+                    <div class="col-xs-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Bug</h3>
                             </div>
-                        </div>
+                            <div class="panel-body">
+                                <div class="container-fluid">
 
-                        <div class="row">
-                            <h4 class="header">Channels</h4>
-                            <div class="col-xs-4">
-                                <select id="custom-channels" class="selectpicker" data-width="fit" title="Channels" multiple>
-                                    <option>Master</option>
-                                    <option>3DCart</option>
-                                    <option>Amazon</option>
-                                    <option>BigCommerce</option>
-                                    <option>Ebay</option>
-                                    <option>LemonStand</option>
-                                    <option>Magento Cart</option>
-                                    <option>Magento Two</option>
-                                    <option>Salesforce</option>
-                                    <option>ShipExpress</option>
-                                    <option>Shipstation</option>
-                                    <option>Shopify</option>
-                                    <option>SolidWorks</option>
-                                    <option>Volusion</option>
-                                    <option>WooCommerce</option>
-                                    <option>X-Cart</option>
-                                    <option>Xero</option>
-                                    <option>ZenCart</option>
-                                    <option>Zoho</option>
-                                </select>
-                            </div>
-                        </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="checkbox">
+                                                <label><input id="needsToBeValidated" type="checkbox">Needs To Be
+                                                    Validated</label>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                        <div id="custom-tasks-div"  class="row" ng-show="isBug() || isEnhancement() || isValidate()">
-                            <h4 class="header">Tasks</h4>
-                            <div class="col-xs-4">
-                                <select id="custom-tasks" class="selectpicker" data-width="fit" title="Tasks" multiple>
-                                    <option>Product Import</option>
-                                    <option>Product Export</option>
-                                    <option>Inventory Update</option>
-                                    <option>Order Import</option>
-                                    <option>Order Export</option>
-                                    <option>Order Fulfillment</option>
-                                    <option>Shipment Import</option>
-                                    <option>Carrier Sync</option>
-                                </select>
-                            </div>
-                        </div>
+                                    <div class="row" ng-show="!isCustom()">
+                                        <h4 class="header">Company</h4>
+                                        <div class="col-xs-8">
+                                            <input type="text" class="form-control"
+                                                   ng-model="descriptionBuilder.company"
+                                                   placeholder="Company">
+                                        </div>
+                                    </div>
 
-                        <div class="row">
-                            <h4 class="header">Company</h4>
-                            <div class="col-xs-12">
-                                <input type="text" class="form-control" ng-model="descriptionBuilder.company"
-                                       placeholder="Company">
-                            </div>
-                        </div>
+                                    <div class="row" ng-show="!isCustom()">
+                                        <div class="col-xs-12">
+                                            <div class="checkbox">
+                                                <label><input id="dbUploaded" type="checkbox">Database Uploaded</label>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                        <div class="row">
-                            <h4 class="header">Fishbowl Version</h4>
-                            <div class="col-xs-6">
-                                <input type="text" class="form-control" ng-model="titleBuilder.fbVersion"
-                                       placeholder="18.10">
-                            </div>
-                        </div>
+                                    <div class="row" ng-show="!isCustom()">
+                                        <div class="col-xs-12">
+                                            <div class="checkbox">
+                                                <label><input id="credsAdded" type="checkbox">Credentials Added to
+                                                    Spreadsheet</label>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <label><input id="customDbUploaded" type="checkbox">Database Uploaded</label>
-                                </div>
-                            </div>
-                        </div>
+                                    <div class="row">
+                                        <h4 class="header">Numbers</h4>
+                                        <div class="col-xs-12">
+                                            <input type="text" class="form-control"
+                                                   ng-model="descriptionBuilder.numbers"
+                                                   placeholder="Numbers">
+                                            <small class="form-text text-muted">Product numbers, order numbers etc.,
+                                                specify
+                                                Fishbowl or channel.
+                                            </small>
+                                        </div>
+                                    </div>
 
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <label><input id="customCredsAdded" type="checkbox">Credentials Added to
-                                        Spreadsheet</label>
-                                </div>
-                            </div>
-                        </div>
+                                    <div class="row">
+                                        <h4 class="header">Steps To Reproduce</h4>
+                                        <div class="col-xs-12">
+                                    <textarea class="form-control rounded-0"
+                                              ng-model="descriptionBuilder.stepsToReproduce"
+                                              placeholder="Steps to reproduce" rows="4"></textarea>
+                                        </div>
+                                    </div>
 
-                        <div class="row" ng-show="isEnhancement() || isNewCustom()">
-                            <h4 class="header">Feature List</h4>
-                            <div class="col-xs-12">
-                                <textarea class="form-control rounded-0" ng-model="descriptionBuilder.newFeatures" placeholder="Feature list" rows="6"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <h4 class="header">Due Date</h4>
-                            <div class="col-xs-4">
-                                <div class="input-group date">
-                                    <input id="datepicker" type="text" class="form-control" placeholder="Due Date">
-                                    <div class="input-group-addon"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--BUG PANEL-->
-    <div class="row" ng-show="isBug() || isValidate()">
-        <div class="col-xs-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Bug</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="container-fluid">
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <label><input id="needsToBeValidated" type="checkbox">Needs To Be Validated</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row" ng-show="!isCustom()">
-                            <h4 class="header">Company</h4>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" ng-model="descriptionBuilder.company" placeholder="Company">
-                            </div>
-                        </div>
-
-                        <div class="row" ng-show="!isCustom()">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <label><input id="dbUploaded" type="checkbox">Database Uploaded</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row" ng-show="!isCustom()">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <label><input id="credsAdded" type="checkbox">Credentials Added to Spreadsheet</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <h4 class="header">Numbers</h4>
-                            <div class="col-xs-12">
-                                <input type="text" class="form-control" ng-model="descriptionBuilder.numbers" placeholder="Numbers">
-                                <small class="form-text text-muted">Product numbers, order numbers etc., specify Fishbowl or channel.</small>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <h4 class="header">Steps To Reproduce</h4>
-                            <div class="col-xs-12">
-                                <textarea class="form-control rounded-0" ng-model="descriptionBuilder.stepsToReproduce" placeholder="Steps to reproduce" rows="4"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <h4 class="header">Server Logs</h4>
-                            <div class="col-xs-12">
-                                <div class="radio">
-                                    <label><input id="pasteLogs" type="radio" name="logs">Paste logs</label>
-                                    <textarea class="form-control rounded-0" ng-model="logText" rows="4" ng-show="pasteLogs" placeholder="Logs"></textarea>
-                                </div>
-                                <div class="radio">
-                                    <label><input id="uploadFile" type="radio" name="logs">Upload File</label>
-                                    <div class="custom-file" ng-show="uploadFile">
-                                        <input type="file" class="custom-file-input" id="fileUpload">
+                                    <div class="row">
+                                        <h4 class="header">Server Logs</h4>
+                                        <div class="col-xs-12">
+                                            <div class="radio">
+                                                <label><input id="pasteLogs" type="radio" name="logs">Paste logs</label>
+                                                <textarea class="form-control rounded-0" ng-model="logText" rows="4"
+                                                          ng-show="pasteLogs" placeholder="Logs"></textarea>
+                                            </div>
+                                            <div class="radio">
+                                                <label><input id="uploadFile" type="radio" name="logs">Upload
+                                                    File</label>
+                                                <div class="custom-file" ng-show="uploadFile">
+                                                    <input type="file" class="custom-file-input" id="fileUpload">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -284,43 +324,4 @@
             </div>
         </div>
     </div>
-
-    <!--<div class="row">-->
-        <!--<h4 class="header">Tasks</h4>-->
-        <!--<div class="col-xs-4">-->
-            <!--<select id="tasks" class="selectpicker" data-width="fit" title="Tasks" multiple>-->
-                <!--<option>Product Import</option>-->
-                <!--<option>Product Export</option>-->
-                <!--<option>Inventory Update</option>-->
-                <!--<option>Order Import</option>-->
-                <!--<option>Order Export</option>-->
-                <!--<option>Order Fulfillment</option>-->
-                <!--<option>Shipment Import</option>-->
-                <!--<option>Carrier Sync</option>-->
-            <!--</select>-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="row">-->
-        <!--<h4 class="header">Title</h4>-->
-        <!--<div class="col-xs-4">-->
-            <!--<input type="text" class="form-control" ng-model="titleBuilder.title" placeholder="Title of the card">-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="row">-->
-        <!--<h4 class="header">Description</h4>-->
-        <!--<div class="col-xs-4">-->
-            <!--<textarea class="form-control rounded-0" ng-model="descriptionBuilder.description" placeholder="Description" rows="3"></textarea>-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="row">-->
-        <!--<h4 class="header">Steps To Reproduce</h4>-->
-        <!--<div class="col-xs-4">-->
-            <!--<textarea class="form-control rounded-0" ng-model="descriptionBuilder.stepsToReproduce" placeholder="Steps to reproduce" rows="3"></textarea>-->
-        <!--</div>-->
-    <!--</div>-->
-
-
 </div>

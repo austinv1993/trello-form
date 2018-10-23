@@ -42,7 +42,7 @@ angular.module('form')
     init();
 
     $scope.isEnhancement = function() {
-       return $scope.labelBuilder.labels.includes("Enhancement");
+        return $scope.labelBuilder.labels.includes("Enhancement");
     };
     $scope.isBug = function() {
         return $scope.labelBuilder.labels.includes("Bug");
@@ -161,8 +161,6 @@ angular.module('form')
         buildTitle();
         buildDescription();
         buildLabels();
-
-
     };
 
     function buildTitle() {
