@@ -166,9 +166,9 @@ angular.module('form')
         buildTitle();
         buildDescription();
         buildLabels();
-        trelloService.create($scope.card).then(function (response) {
-            console.log(response);
-        });
+        trelloService.create($scope.card);
+        init();
+
     };
 
     function buildTitle() {
