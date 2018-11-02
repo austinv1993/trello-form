@@ -1,14 +1,15 @@
 angular.module('form')
 .service('trelloService', function($http) {
 
-    this.create = function(card) {
+    this.create = function(card, needsToBeValidated) {
         return $http.post('https://api.trello.com/1/cards?key=' + auth.key + '&token=' + auth.token, card)
             .then(function(response) {
                 if (response.status === 200) {
                     var id = response.data.id;
                     var name = card.name + " [" + response.data.idShort + "]";
+                    var idList = needsToBeValidated ? $scope.getListId("Validate") : card.idList;
 
-                    $http.put('https://api.trello.com/1/cards/' + id + '?key=' + auth.key + '&token=' + auth.token + '&name=' + name, null)
+                    $http.put('https://api.trello.com/1/cards/' + id + '?key=' + auth.key + '&token=' + auth.token + '&idList=' + idList + '&name=' + name, null)
                         .then(function(response) {
                             return response;
                         });

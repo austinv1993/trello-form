@@ -37,7 +37,17 @@ angular.module('form')
         };
 
         $('.selectpicker').selectpicker('deselectAll');
+        $('.form-check-input').prop('checked', false)
     }
+
+    $scope.submit = function() {
+        buildTitle();
+        buildDescription();
+        buildLabels();
+        trelloService.create($scope.card, $scope.labelBuilder.needsToBeValidated);
+        init();
+
+    };
 
     init();
 
@@ -162,15 +172,6 @@ angular.module('form')
         console.log($scope.file);
     });
 
-    $scope.submit = function() {
-        buildTitle();
-        buildDescription();
-        buildLabels();
-        trelloService.create($scope.card);
-        init();
-
-    };
-
     function buildTitle() {
         var builder = $scope.titleBuilder;
         var title = "";
@@ -247,7 +248,7 @@ angular.module('form')
         $scope.card.idLabels = labelIds;
 
         if (builder.needsToBeValidated) {
-            listName = "Validate";
+            listName = "Bugs";
         } else if (labelNames.includes("Bug")) {
             listName = "Bugs";
         } else if (labelNames.includes("Custom Plugin")) {
